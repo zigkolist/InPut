@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+      body {
+        font-family: 'Times New Roman', Times, serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0px;
+      }
+
+      .form-container {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 30px;
+        width: 250px;
+      }
+
+      h2 {
+        color: #1a73e8;
+        font-size: 27px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        font-weight: 500;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 7px;
+        margin-top: 20px;
+        font-weight: 500;
+      }
+
+      input[type="number"] {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        height: 6px;
+      }
+
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      button {
+        padding-top: 3px;
+        border: 2px solid #1a73e8;
+        border-radius: 7px;
+        background-color: #ffffff;
+        color: #1a73e8;
+        cursor: pointer;
+        margin-left: auto;
+        height: 25px;
+        width: 70px;
+        font-size: 15px;
+        font-weight: 700;
+        align-items: baseline;
+      }
+
+      button:hover {
+        background-color: #ffffff;
+      }
+
+      .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+      }
+
+      .error-border {
+        border-color: red !important;
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        document.getElementById('numberForm').addEventListener('submit', function(event) {
+          const numberInput = document.getElementById('numberInput');
+          const errorMessage = document.getElementById('errorMessage');
+          
+          if (numberInput.value <= 10) {
+            errorMessage.style.display = 'block';
+            numberInput.classList.add('error-border');
+            event.preventDefault();
+          } else {
+            errorMessage.style.display = 'none';
+            numberInput.classList.remove('error-border');
+          }
+        });
+      };
+    </script>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <h2>Form</h2>
+      <form id="numberForm">
+        <label for="numberInput">Number</label>
+        <input type="number" id="numberInput" name="number" placeholder="Please enter a number" required />
+        <div id="errorMessage" class="error-message" style="display: none;">
+          Please enter a number greater than 10.
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
